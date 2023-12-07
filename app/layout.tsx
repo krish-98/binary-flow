@@ -34,20 +34,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ClerkProvider
-        appearance={{
-          elements: {
-            formButtonPrimary: "primary-gradient",
-            footerActionLink: "primary-text-gradient hover: text-primary-500",
-          },
-        }}
-      >
-        <ThemeProvider>
-          <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-            {children}
-          </body>
-        </ThemeProvider>
-      </ClerkProvider>
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+        <ClerkProvider
+          appearance={{
+            elements: {
+              formButtonPrimary: "primary-gradient",
+              footerActionLink: "primary-text-gradient hover: text-primary-500",
+            },
+          }}
+        >
+          <ThemeProvider>{children}</ThemeProvider>
+        </ClerkProvider>
+      </body>
     </html>
   )
 }

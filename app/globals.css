@@ -29,7 +29,7 @@ body {
   }
 
   .btn-secondary {
-    @apply bg-light 800 dark:bg-dark-400 !important;
+    @apply bg-light-800 dark:bg-dark-400 !important;
   }
 
   .btn-tertiary {
@@ -56,9 +56,9 @@ body {
   }
 
   .no-focus {
-    @apply focus-visible: ring-0
+    @apply focus-visible:ring-0
     focus-visible:ring-transparent 
-    focus-visible: ring-offset-0 !important;
+    focus-visible:ring-offset-0 !important;
   }
 
   .active-theme {
