@@ -4,6 +4,62 @@ import Filter from "@/components/shared/Filter"
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar"
 import { Button } from "@/components/ui/button"
 import { HomePageFilters } from "@/constants/filter"
+import NoResult from "@/components/shared/NoResult"
+import QuestionCard from "@/components/card/QuestionCard"
+
+const questions = [
+  {
+    _id: "1",
+    title: "Cascading Deletes in SQLAlchemy?",
+    tags: [
+      { _id: "1", name: "python" },
+      { _id: "2", name: "sql" },
+    ],
+    author: {
+      _id: "authorId1",
+      name: "John Smith",
+      picture: "url/to/picture1",
+    },
+    upvotes: 1500000,
+    views: 500552,
+    answers: [{}, {}], // Assuming answers is an array of objects of any type
+    createdAt: new Date("2023-01-01"),
+  },
+  {
+    _id: "2",
+    title: "How to center a div?",
+    tags: [
+      { _id: "3", name: "css" },
+      { _id: "4", name: "html" },
+    ],
+    author: {
+      _id: "authorId2",
+      name: "John Smith 2",
+      picture: "url/to/picture2",
+    },
+    upvotes: 10,
+    views: 100,
+    answers: [{}, {}], // Assuming answers is an array of objects of any type
+    createdAt: new Date("2015-01-01"),
+  },
+  {
+    _id: "3",
+    title: "What is closure?",
+    tags: [
+      { _id: "5", name: "JavaScript" },
+      { _id: "6", name: "ES6" },
+    ],
+    author: {
+      _id: "authorId3",
+      name: "John Smith 3",
+      picture: "url/to/picture3",
+    },
+    upvotes: 10,
+    views: 100,
+    answers: [{}, {}], // Assuming answers is an array of objects of any type
+    createdAt: new Date("2015-01-01"),
+  },
+]
 
 export default function Home() {
   return (
@@ -35,6 +91,33 @@ export default function Home() {
       </div>
 
       <HomeFilters />
+
+      <div className="mt-10 flex w-full flex-col gap-6">
+        {questions.length > 0 ? (
+          questions.map((question) => (
+            <QuestionCard
+              key={question._id}
+              _id={question._id}
+              title={question.title}
+              tags={question.tags}
+              author={question.author}
+              upvotes={question.upvotes}
+              views={question.views}
+              answers={question.answers}
+              createdAt={question.createdAt}
+            /> // {...question}
+          ))
+        ) : (
+          <NoResult
+            title="There's no question to show"
+            description="  Be the first to break the silence! 🚀 Ask a Question and kickstart the
+          discussion. Our query could be the next big thing others learn from. Get
+          involved! 💡"
+            link="/ask-question"
+            linkTitle="Ask a Question"
+          />
+        )}
+      </div>
     </>
   )
 }
