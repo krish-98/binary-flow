@@ -20,6 +20,7 @@ import { QuestionsSchema } from "@/lib/validations"
 import { z } from "zod"
 import { Badge } from "../ui/badge"
 import Image from "next/image"
+import { createQuestion } from "@/lib/actions/question.actions"
 
 const type: any = "create"
 
@@ -38,9 +39,18 @@ const Question = () => {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setIsSubmitting(true)
-    console.log(values)
+
+    try {
+      // make an asyc call to your API => create a question
+      // contain all form data
+
+      await createQuestion({})
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputKeyDown = (
@@ -125,6 +135,8 @@ const Question = () => {
                     // @ts-ignore
                     editorRef.current = editor
                   }}
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
                   initialValue=""
                   init={{
                     height: 350,
